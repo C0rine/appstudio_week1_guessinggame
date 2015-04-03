@@ -20,6 +20,9 @@ public class MainActivity extends ActionBarActivity {
     private Button makequess;
     private EditText guess;
 
+    // generate the number the user has to guess
+    private int random = 0 + (int) (Math.random() * 1000);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,14 +78,27 @@ public class MainActivity extends ActionBarActivity {
     // making guesses
     public void makingtheguess(View view) {
 
-        // generate the number the user has to guess
-        int random = 0 + (int) (Math.random() * 1000);
+        // uncomment the line below to see the value to be guessed for debugging/testing purposes
+        // instructions.setText(String.valueOf(random));
 
-        //instructions.setText(String.valueOf(random));
+        Integer userinput = Integer.parseInt(String.valueOf(guess.getText()));
 
-        String userinput = String.valueOf(guess.getText());
+        if (userinput < random){
+            Toast.makeText(this, "Try higher", Toast.LENGTH_SHORT).show();
+        }
 
-        Toast.makeText(this, userinput, Toast.LENGTH_SHORT).show();
+        else if (userinput > random){
+            Toast.makeText(this, "Try lower", Toast.LENGTH_SHORT).show();
+        }
 
+        else {
+            title.setText("You won!");
+            Toast.makeText(this, "YOU WON!!!", Toast.LENGTH_SHORT).show();
+
+            guess.setVisibility(View.GONE);
+            makequess.setVisibility(View.GONE);
+
+            instructions.setText(String.valueOf(random));
+        }
     }
 }
