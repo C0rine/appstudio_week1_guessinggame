@@ -42,9 +42,19 @@
         android:padding="10dp"
         android:textSize="40sp"
         android:id="@+id/startgame"
-        android:clickable="false"
+        android:clickable="true"
         android:layout_marginBottom="50dp"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="startClick"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/guess"
+        android:layout_alignTop="@+id/startgame"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
