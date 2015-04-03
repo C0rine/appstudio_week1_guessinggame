@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //check changes
 
@@ -16,6 +17,7 @@ public class MainActivity extends ActionBarActivity {
     private TextView title;
     private TextView instructions;
     private Button startgame;
+    private Button makequess;
     private EditText guess;
 
     @Override
@@ -27,8 +29,10 @@ public class MainActivity extends ActionBarActivity {
         instructions = (TextView) findViewById(R.id.instructions);
         startgame = (Button) findViewById(R.id.startgame);
         guess = (EditText) findViewById(R.id.guess);
+        makequess = (Button) findViewById(R.id.makeguess);
 
         guess.setVisibility(View.INVISIBLE);
+        makequess.setVisibility(View.INVISIBLE);
     }
 
 
@@ -54,16 +58,31 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // starting game
     public void startClick(View view) {
 
         // upon clicking the startgame button, remove the button and show field for user input so the user can guess
         startgame.setVisibility(View.GONE);
         guess.setVisibility(View.VISIBLE);
+        makequess.setVisibility(view.VISIBLE);
 
         // change instructions field to a questionmark
         String questionmark = "?";
         instructions.setText(questionmark);
-        instructions.setTextSize(80);
+        instructions.setTextSize(150);
+    }
+
+    // making guesses
+    public void makingtheguess(View view) {
+
+        // generate the number the user has to guess
+        int random = 0 + (int) (Math.random() * 1000);
+
+        //instructions.setText(String.valueOf(random));
+
+        String userinput = String.valueOf(guess.getText());
+
+        Toast.makeText(this, userinput, Toast.LENGTH_SHORT).show();
 
     }
 }
