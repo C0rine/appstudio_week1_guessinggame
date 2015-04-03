@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title">Guessing Game</string>
+    <string name="instructions">The game generates a random number between 1 and 1000. Your job is to guess this number! We will give you hints along the way. Good luck!</string>
+    <string name="startgame">start</string>
 </resources>
