@@ -3,6 +3,7 @@ Minor programmeren - Native App Studio assignment
 April 2015
 
 Corine Jacobs
+
 Corine_J [at] MSN [dot] com
 
 Random number guessing game: A random number from 1 to 1000 gets generated. The user makes
