@@ -10,19 +10,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//check changes
 
 public class MainActivity extends ActionBarActivity {
 
     private TextView title;
     private TextView instructions;
     private Button startgame;
-    private Button makequess;
+    private Button makeguess;
     private EditText guess;
 
     // generate the number the user has to guess
-    private int random = 0 + (int) (Math.random() * 1000);
+    private int random = (int)(Math.random() * 1000);
 
+   // initialize the game
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +31,12 @@ public class MainActivity extends ActionBarActivity {
         title = (TextView) findViewById(R.id.title);
         instructions = (TextView) findViewById(R.id.instructions);
         startgame = (Button) findViewById(R.id.startgame);
+        makeguess = (Button) findViewById(R.id.makeguess);
         guess = (EditText) findViewById(R.id.guess);
-        makequess = (Button) findViewById(R.id.makeguess);
 
+        // hide userinput and guess buttom for now
+        makeguess.setVisibility(View.INVISIBLE);
         guess.setVisibility(View.INVISIBLE);
-        makequess.setVisibility(View.INVISIBLE);
     }
 
 
@@ -64,10 +65,10 @@ public class MainActivity extends ActionBarActivity {
     // starting game
     public void startClick(View view) {
 
-        // upon clicking the startgame button, remove the button and show field for user input so the user can guess
+        // upon clicking the startgame button, remove the button and show field for user input and the guess button so the user can guess
         startgame.setVisibility(View.GONE);
         guess.setVisibility(View.VISIBLE);
-        makequess.setVisibility(view.VISIBLE);
+        makeguess.setVisibility(View.VISIBLE);
 
         // change instructions field to a questionmark
         String questionmark = "?";
@@ -81,24 +82,32 @@ public class MainActivity extends ActionBarActivity {
         // uncomment the line below to see the value to be guessed for debugging/testing purposes
         // instructions.setText(String.valueOf(random));
 
+        // get the input from the user and parse it to an int
         Integer userinput = Integer.parseInt(String.valueOf(guess.getText()));
 
+        // compare userinput with the random generated number
         if (userinput < random){
+            // give hint
             Toast.makeText(this, "Try higher", Toast.LENGTH_SHORT).show();
         }
 
         else if (userinput > random){
+            // give hint
             Toast.makeText(this, "Try lower", Toast.LENGTH_SHORT).show();
         }
 
         else {
+            // the user must have guessed the right number --> end the game
             title.setText("You won!");
             Toast.makeText(this, "YOU WON!!!", Toast.LENGTH_SHORT).show();
 
             guess.setVisibility(View.GONE);
-            makequess.setVisibility(View.GONE);
+            makeguess.setVisibility(View.GONE);
 
             instructions.setText(String.valueOf(random));
+
+            // restart the main activity
+            // I could not figure out how to do this :(, so you would have to restart the app.
         }
     }
 }
